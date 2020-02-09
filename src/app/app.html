@@ -1,0 +1,23 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar color="cDarkorange">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-list-header>Navigate</ion-list-header>
+      <button menuClose ion-item (click)="goHome()">Home</button>
+      <button menuClose ion-item (click)="goToTournaments()">Find a Tournaments</button>
+    </ion-list>
+    <ion-list *ngIf="favoriteTeams">
+       <ion-list-header>Favorites</ion-list-header>
+       <button menuClose ion-item *ngFor="let fab of favoriteTeams" (click)="goToTeam(fab)">
+            {{fab.team.name}}
+       </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
